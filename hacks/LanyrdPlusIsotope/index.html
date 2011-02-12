@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SxSWxLANYRDxISOTOPE - March 13</title>
+  <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+  <link rel="stylesheet" type="text/css" href="./fancybox/jquery.fancybox-1.3.4.css" media="screen" />
+</head>
+<body>
+  
+  <h1>SxSWxLANYRDxISOTOPE - March 13</h1>
+  
+  <section id="options" class="clearfix">
+    <div class="option-combo">
+      <h2>Filter:</h2>
+      <ul id="filter" class="option-set floated clearfix">
+        <li><a href="#show-all" data-filter="*" class="selected">show all</a></li>
+      </ul>
+    </div>
+    <div class="option-combo">
+      <h2>Sort:</h2>
+      <ul id="sort" class="option-set floated clearfix">
+      	<li><a href="#start" data-sort="start_time" class="selected">start time</a></li>
+		<li><a href="#type" data-sort="session_type">session type</a></li>
+        <li><a href="#wordiness" data-sort="wordiness">wordiness</a></li>
+      </ul>
+    </div>
+    <div class="option-combo">
+      <h2>Layout: </h2>
+      <ul id="layouts" class="option-set floated clearfix">
+        <li><a href="#fitRows" class="selected">fitRows</a></li>
+        <li><a href="#straightDown">straightDown</a></li>
+        <li><a href="#masonry">masonry</a></li>
+      </ul>
+    </div>
+	
+  </section>
+  
+  <section id="loader"style="text-align:center; width: 100%;">
+  	
+  		<img src="./img/ajax-loader.gif"/>
+		<p>Loading SxSW Sessions for 13th March from the Lanyrd API</p>
+  	
+  </section>
+  
+  <ul id="super-list" class="fitRows clearfix">
+    
+  </ul>
+  
+  <footer>
+  	A quick mashup for Rewired State :: gSxSW perpetrated by <a href="http://www.neontribe.co.uk">Rupert Redington</a> <br/>
+	Thanks to <a href="http://desandro.com">David DeSandro</a> / <a href="http://metafizzy.co">Metafizzy</a> for Isotope
+    and <a href="http://simonwillison.net/">Simon Willison</a> and <a href="http://natbat.net/">Natalie Downe</a> for <a href="http://lanyrd.com">Lanyrd</a>
+    <br />
+    Props to <a href="http://jquery.com">jQuery</a>, <a href="http://fancybox.net/">FancyBox</a> and <a href="http://www.madebypi.co.uk/labs/colorutils/">madeby
+pi</a>
+  </footer>
+
+  <script id="sessionTemplate" type="text/x-jquery-tmpl">
+    <li class="session ${css_token}" data-start_time="${start_time}" data-session_type="${type}">
+    	<a href="javascript:;" style="background:#${bg_color};">${title}</a>
+		<div class="slides">
+			<div class="slide">
+				<h2>${title}</h2>
+				<h3>${type}</h3>
+				<h4>${start_time}</h4>
+				<p>${abstract}</p>
+			</div>
+		</div>
+    </li>
+  </script>
+  
+  <script src="./js/jquery-1.4.4.min.js"></script>
+  <script src="./js/jquery.tmpl.min.js"></script>
+  <script src="./js/jquery.isotope.min.js"></script>
+  <!-- Fancybox integration -->
+  <script src="./fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+  <script src="./fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+  <script src="./js/date.js"></script>
+  <script src="./js/ColorUtils-min.js"></script>
+  <script src="./js/impl.js"></script>
+
+</body>
+</html>
