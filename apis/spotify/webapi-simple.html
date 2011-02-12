@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1038.35">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 16.0px 0.0px; font: 32.0px Helvetica; color: #537bbd}
+    p.p2 {margin: 0.0px 0.0px 12.0px 0.0px; font: 24.0px Helvetica; color: #537bbd}
+    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier; color: #071980; background-color: #f4f4f4}
+    p.p4 {margin: 0.0px 0.0px 8.0px 0.0px; font: 16.0px Times}
+    p.p5 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Courier; color: #071980; background-color: #f4f4f4; min-height: 16.0px}
+    p.p6 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Helvetica; min-height: 16.0px}
+    p.p7 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Helvetica}
+    p.p8 {margin: 0.0px 0.0px 0.0px 0.0px; font: 13.0px Helvetica; color: #0000ee}
+    span.s1 {text-decoration: underline ; color: #1738f5}
+    span.s2 {color: #000000}
+    span.s3 {text-decoration: underline}
+  </style>
+</head>
+<body>
+<p class="p1"><b>Spotify web-service examples</b></p>
+<p class="p2"><b>Methods</b></p>
+<p class="p3">https://ws.spotify.com/oauth/token</p>
+<p class="p3">https://ws.spotify.com/2.0/user/&lt;canonical_username&gt;/playlist/&lt;playlist_id&gt;</p>
+<p class="p3">https://ws.spotify.com/lookup/1/</p>
+<p class="p3">https://ws.spotify.com/search/1/</p>
+<p class="p2"><b>token</b></p>
+<p class="p4">We are using parts of <a href="http://tools.ietf.org/html/draft-ietf-oauth-v2-10"><span class="s1">oauth v2 draft 10</span></a>.<span class="Apple-converted-space"> </span></p>
+<p class="p4">We support grant_type none, if you just want a token that does not need a user to authorize requests.</p>
+<p class="p3">curl -dgrant_type=none -dclient_id=CLIENT_ID -dclient_secret=CLIENT_SECRET \</p>
+<p class="p3"><span class="Apple-converted-space">     </span>https://ws.spotify.com/oauth/token</p>
+<p class="p5"><br></p>
+<p class="p3">{</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"expires_in" : 28800,</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"access_token" : "vF9dft4qmT",</p>
+<p class="p3">}</p>
+<p class="p4">Since we have only partly implemented the spec, the safest way to authorize a request right now is to add the query parameter oauth_token with the access_token.</p>
+<p class="p2"><b>playlist</b></p>
+<p class="p4">Just like in the spotify desktop client, if you know the uri of the list, you can access it.</p>
+<p class="p3">curl https://ws.spotify.com/2.0/user/jon/playlist/6YROYeZS57gI5eOZd2pFTg?oauth_token=vF9dft4qmT</p>
+<p class="p5"><br></p>
+<p class="p3">{</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"collaborative" : false,</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"creator" : "jon",</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"time" : 1282919965,</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"version" : 639,</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"title" : "Favorites",</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"uri" : "spotify:user:jon:playlist:6YROYeZS57gI5eOZd2pFTg",</p>
+<p class="p3"><span class="Apple-converted-space">   </span>"items" : [</p>
+<p class="p3"><span class="Apple-converted-space">      </span>{</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"album" : {</p>
+<p class="p3"><span class="Apple-converted-space">            </span>"name" : "Discovery",</p>
+<p class="p3"><span class="Apple-converted-space">            </span>"uri" : "spotify:album:2noRn2Aes5aoNVsU6iWThc",</p>
+<p class="p3"><span class="Apple-converted-space">            </span>"image" : "http://open.spotify.com/image/939a6f415b6bea9081b25c963248b1c6c646f7bb"</p>
+<p class="p3"><span class="Apple-converted-space">         </span>},</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"artists" : [</p>
+<p class="p3"><span class="Apple-converted-space">            </span>{</p>
+<p class="p3"><span class="Apple-converted-space">               </span>"name" : "Daft Punk",</p>
+<p class="p3"><span class="Apple-converted-space">               </span>"uri" : "spotify:artist:4tZwfgrHOc3mvqYlEYSvVi"</p>
+<p class="p3"><span class="Apple-converted-space">            </span>}</p>
+<p class="p3"><span class="Apple-converted-space">         </span>],</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"number" : 5,</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"duration" : 211640,</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"title" : "Crescendolls",</p>
+<p class="p3"><span class="Apple-converted-space">         </span>"uri" : "spotify:track:6vuPZX9fWESg5js2JFTQRJ"</p>
+<p class="p3"><span class="Apple-converted-space">      </span>},</p>
+<p class="p3"><span class="Apple-converted-space">      </span>...</p>
+<p class="p3"><span class="Apple-converted-space">   </span>]</p>
+<p class="p3">}</p>
+<p class="p2"><b>lookup</b></p>
+<p class="p4">Requires an oauth_token.</p>
+<p class="p3">curl 'https://ws.spotify.com/lookup/1/?uri=spotify:artist:4tZwfgrHOc3mvqYlEYSvVi&amp;oauth_token=vF9dft4qmT'</p>
+<p class="p5"><br></p>
+<p class="p3">&lt;?xml version="1.0" encoding="utf-8"?&gt;</p>
+<p class="p3">&lt;artist xmlns="http://www.spotify.com/ns/music/1"&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;name&gt;Daft Punk&lt;/name&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;portrait href="http://open.spotify.com/image/e548c1ef1c2ad4b942f41c2fcddba22eb8ee319f"/&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;image&gt;http://open.spotify.com/image/e548c1ef1c2ad4b942f41c2fcddba22eb8ee319f&lt;/image&gt;</p>
+<p class="p3">&lt;/artist&gt;</p>
+<p class="p4">Same as the <a href="http://developer.spotify.com/en/metadata-api/overview/"><span class="s1">current api</span></a>, except for the image.</p>
+<p class="p2"><b>search</b></p>
+<p class="p4">Requires an oauth_token.</p>
+<p class="p3">curl 'https://ws.spotify.com/search/1/album?q=album:robyn&amp;oauth_token=vF9dft4qmT'</p>
+<p class="p5"><br></p>
+<p class="p3">&lt;?xml version="1.0" encoding="utf-8"?&gt;</p>
+<p class="p3">&lt;albums xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns="http://www.spotify.com/ns/music/1"&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;opensearch:Query role="request" startPage="1" searchTerms="album:robyn"/&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;opensearch:totalResults&gt;11&lt;/opensearch:totalResults&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;opensearch:startIndex&gt;0&lt;/opensearch:startIndex&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;opensearch:itemsPerPage&gt;100&lt;/opensearch:itemsPerPage&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;album href="spotify:album:6ZGoBOEAufrrFWYDKcgTs2"&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;name&gt;Det Bästa Med Robyn&lt;/name&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;artist href="spotify:artist:6UE7nl9mha6s8z0wFQFIZ2"&gt;</p>
+<p class="p3"><span class="Apple-converted-space">      </span>&lt;name&gt;Robyn&lt;/name&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;/artist&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;id type="upc"&gt;828768772928&lt;/id&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;image&gt;http://open.spotify.com/image/e59dafe49a190e052db58c8ca3f7fd050e154017&lt;/image&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;popularity&gt;0.79952&lt;/popularity&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;availability&gt;</p>
+<p class="p3"><span class="Apple-converted-space">      </span>&lt;territories&gt;CN DK EE FI HK ID IN KR LT LV NO PH SE SG&lt;/territories&gt;</p>
+<p class="p3"><span class="Apple-converted-space">    </span>&lt;/availability&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>&lt;/album&gt;</p>
+<p class="p3"><span class="Apple-converted-space">  </span>...</p>
+<p class="p3">&lt;/albums&gt;</p>
+<p class="p4">Same as the <a href="http://developer.spotify.com/en/metadata-api/overview/"><span class="s1">current api</span></a>, except for the image.</p>
+<p class="p4">Even though it does not need user authorization, if it is user authorized it will only return items that are available in that user’s country. For instance, this specific query returns 16 albums global, but only 11 for Sweden.</p>
+<p class="p2"><b>Response format</b></p>
+<p class="p4">The playlist queries defaults to json, while the old api which is search and lookup defaults to xml. You can change the format by adding an extension or (for playlists) by setting an Accept header. This unfortunately only changes the format, it does not mean that a track item in a search json response is equivalent to a track item in playlist json respons.</p>
+<p class="p4">Get xspf playlists</p>
+<p class="p3">curl https://ws.spotify.com/2.0/user/jon/playlist/6YROYeZS57gI5eOZd2pFTg.xspf</p>
+<p class="p3">curl -H 'Accept: application/xspf+xml' https://ws.spotify.com/2.0/user/jon/playlist/6YROYeZS57gI5eOZd2pFTg</p>
+<p class="p4">Explicitly force json playlists by adding extension or using the Accept header</p>
+<p class="p3">curl https://ws.spotify.com/2.0/user/jon/playlist/6YROYeZS57gI5eOZd2pFTg.json</p>
+<p class="p3">curl -H 'Accept: application/json' https://ws.spotify.com/2.0/user/jon/playlist/6YROYeZS57gI5eOZd2pFTg</p>
+<p class="p4">Get json search</p>
+<p class="p3">curl https://ws.spotify.com/search/1/album.json?q=album:robyn</p>
+<p class="p4">and lookup</p>
+<p class="p3">curl https://ws.spotify.com/lookup/1/.json?uri=spotify:artist:4tZwfgrHOc3mvqYlEYSvVi</p>
+<p class="p4">Explicitly force xml search</p>
+<p class="p3">curl https://ws.spotify.com/search/1/album.xml?q=album:robyn</p>
+<p class="p4">and lookup</p>
+<p class="p3">curl https://ws.spotify.com/lookup/1/.xml?uri=spotify:artist:4tZwfgrHOc3mvqYlEYSvVi</p>
+<p class="p6"><br></p>
+<p class="p7">Last updated 2011-02-11 16:29:11 UTC</p>
+<p class="p8"><span class="s2">contact: <a href="mailto:nevyn@spotify.com"><span class="s3">nevyn@spotify.com</span></a> <a href="mailto:phb@spotify.com"><span class="s3">phb@spotify.com</span></a></span></p>
+</body>
+</html>
