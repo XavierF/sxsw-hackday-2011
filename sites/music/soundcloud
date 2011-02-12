@@ -1,0 +1,19 @@
+Starting point for hackers:
+http://soundcloud.com/developers
+
+Play with our console and explore available data:
+http://soundcloud.com/developers/console
+
+Get started right away with our special Public API Key (read only):
+"guardian-hack-day"
+(e.g.: http://api.soundcloud.com/users/forss.json?consumer_key=guardian-hack-day)
+
+To earn write access, please register your own app on SoundCloud:
+http://soundcloud.com/you/apps/new
+
+Our wiki on github:
+https://github.com/soundcloud/api/wiki/
+
+
+Feel free to get in touch with us if you have additional questions!
+Paul (@zaicic) and Yves (@yvg) are hacking somewhere in the office :)
